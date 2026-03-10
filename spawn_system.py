@@ -2,196 +2,149 @@ import discord
 import asyncio
 import random
 import uuid
+from datetime import datetime
 
 import database as db
 import card_utils as cu
 
+SPAWN_INTERVAL_MIN = 300   # 5 min
+SPAWN_INTERVAL_MAX = 900   # 15 min
 
-# ─── Sign Modal ───────────────────────────────────────────────────────────────
+FAIL_CAPTIONS = [
+    "Wrong! Take a closer look...",
+    "Nope! Try again.",
+    "That's not quite right!",
+    "Almost! But not quite.",
+    "Hmm, that doesn't match!",
+    "Not this time! Keep trying.",
+]
 
-class SignModal(discord.ui.Modal, title="Sign the Card!"):
-    guess = discord.ui.TextInput(
-        label="Type the full name of the card to claim it",
-        placeholder="e.g. McLaren, Red Bull, Interlagos Brazil...",
-        min_length=1,
-        max_length=60,
-        required=True
-    )
 
-    def __init__(self, spawn_id: str, card: dict, variant: str, spawn_value: int, view):
-        super().__init__()
+class SignModal(discord.ui.Modal):
+    def __init__(self, spawn_id: str, card: dict):
+        super().__init__(title=f"Sign this card!")
         self.spawn_id = spawn_id
-        self.card = card
-        self.variant = variant
-        self.spawn_value = spawn_value
-        self.parent_view = view
+        self.card     = card
+        self.answer   = discord.ui.TextInput(
+            label="What is the name of this card?",
+            placeholder=f"Type the card name...",
+            min_length=1,
+            max_length=100,
+        )
+        self.add_item(self.answer)
 
     async def on_submit(self, interaction: discord.Interaction):
-        user = interaction.user
-        db.ensure_user(str(user.id), user.display_name)
-        typed = self.guess.value.strip().lower()
+        user_input = self.answer.value.strip().lower()
+        card_name  = self.card["name"].lower()
+        aliases    = [a.lower() for a in self.card.get("aliases", [])]
+        valid      = [card_name] + aliases
 
-        # Build valid names list from card name + all aliases
-        valid_names = [self.card["name"].lower()]
-        for alias in self.card.get("aliases", []):
-            valid_names.append(alias.lower())
-
-        # Wrong guess
-        if typed not in valid_names:
-            fail = cu.get_fail_caption()
+        if user_input not in valid:
+            caption = random.choice(FAIL_CAPTIONS)
             await interaction.response.send_message(
-                f"**Wrong!** {fail}",
+                f":x: **{caption}** (You typed: `{self.answer.value}`)",
                 ephemeral=True
             )
             return
 
-        # Atomic claim - prevent double-signing
-        claimed = db.claim_spawn(self.spawn_id, str(user.id))
+        # Atomic claim
+        claimed = db.claim_spawn(self.spawn_id, str(interaction.user.id))
         if not claimed:
             await interaction.response.send_message(
-                f"**Too slow!** {cu.get_fail_caption()}",
+                ":x: This card was already signed by someone else!",
                 ephemeral=True
             )
             return
 
-        # Add card to inventory
-        instance_id = cu.generate_instance_id()
-        current_value = cu.calculate_spawn_value(self.card, self.variant)
-        db.add_card_to_inventory(
-            str(user.id), self.card["id"], self.variant, current_value, instance_id
+        # Get spawn info
+        spawn = db.get_spawn(self.spawn_id)
+        variant = spawn["variant"]
+        card    = self.card
+
+        # Calculate value
+        old_val    = db.get_current_value(card["id"], variant, card.get("base_value", 100))
+        catch_val  = cu.compute_catch_value(card, variant)
+        val_change = cu.format_value_change(old_val, catch_val)
+        iid        = cu.generate_instance_id()
+
+        db.ensure_user(str(interaction.user.id), interaction.user.display_name)
+        db.add_card_to_inventory(str(interaction.user.id), card["id"], variant, catch_val, iid)
+
+        # Grant info card if applicable
+        info_granted = None
+        if card.get("info_card_id"):
+            db.grant_info_card(str(interaction.user.id), card["info_card_id"])
+            info_card = cu.get_card_by_id(card["info_card_id"])
+            if info_card:
+                info_granted = info_card["name"]
+
+        # Build catch message
+        r_emoji   = cu.get_rarity_emoji(card["rarity"])
+        v_emoji   = cu.get_variant_emoji(variant)
+        color     = cu.get_rarity_color(card["rarity"])
+
+        embed = discord.Embed(color=color)
+        embed.set_author(
+            name=f"{interaction.user.display_name} signed a new card!",
+            icon_url=interaction.user.display_avatar.url
         )
-        db.set_current_value(self.card["id"], self.variant, current_value)
 
-        # Auto-grant info card for driver/team cards
-        info_card = None
-        info_card_id = self.card.get("info_card_id")
-        if info_card_id and self.card.get("type") in ("driver", "team"):
-            db.grant_info_card(str(user.id), info_card_id)
-            info_card = cu.get_card_by_id(info_card_id)
-
-        # Disable the Sign button for everyone else
-        self.parent_view.sign_button.disabled = True
-        self.parent_view.sign_button.label = f"Signed by {user.display_name}"
-        self.parent_view.sign_button.style = discord.ButtonStyle.secondary
-        self.parent_view.stop()
-        await interaction.message.edit(view=self.parent_view)
-
-        # Build value strings
-        x_str, y_str = cu.format_value_change(
-            current_value, self.card["base_value"], self.card["base_value"]
-        )
-        card_type = self.card.get("type", "card").capitalize()
-        variant_display = self.variant if self.variant != "Standard" else "Normal"
-        v_emoji = cu.get_variant_emoji(self.variant)
-        r_emoji = cu.get_rarity_emoji(self.card["rarity"])
-        card_display = cu.get_card_display_name(self.card, self.variant)
-        sign_caption = cu.get_sign_caption()
-
-        # Build the catch message
-        lines = [
-            f"**{user.display_name}** signed **'{card_display}'**! "
-            f"`(#{instance_id[:8]}, {x_str}/{y_str})`",
+        desc_parts = [
+            f"{r_emoji} **{card['name']}**",
+            f"**Rarity:** {card['rarity'].capitalize()}",
         ]
+        if variant != "Standard":
+            desc_parts.append(f"**Variant:** {v_emoji} {variant}")
+        desc_parts.append(f"**Value:** :coin: {catch_val:,} ({val_change})")
+        desc_parts.append(f"**Instance:** `#{iid}`")
+        if info_granted:
+            desc_parts.append(f"\n:card_index: *You also received the **{info_granted}** info card!*")
 
-        # GP Special exclusivity line
-        if self.variant == "GP Specs":
-            active_gp = cu.get_active_gp()
-            if active_gp:
-                flag = active_gp.get("flag", "")
-                excl = active_gp.get("exclusivity_msg", "This is a GP exclusive!")
-                lines.append(f"***{flag} {excl}***")
+        embed.description = "\n".join(desc_parts)
+        embed.set_thumbnail(url=card["image_url"])
+        embed.set_footer(text="RFRXDex")
 
-        # Sign flavour caption
-        lines.append(sign_caption)
-        lines.append("")
-        lines.append(f"**Card Type:** {card_type}")
-        lines.append(f"**Variant:** {variant_display}")
-        lines.append(
-            f"**Current Value:** {current_value:,} coins ({x_str}/{y_str})"
-        )
-        lines.append(
-            f"**Rarity:** {r_emoji} {self.card['rarity'].capitalize()}"
-        )
-        if info_card:
-            lines.append(f"**Info Card granted:** {info_card['name']}")
+        # Edit original message to disable button
+        try:
+            original_msg = interaction.message
+            if original_msg:
+                disabled_view = SpawnView(self.spawn_id, card, disabled=True)
+                await original_msg.edit(view=disabled_view)
+        except Exception:
+            pass
 
-        await interaction.response.send_message("\n".join(lines))
+        await interaction.response.send_message(embed=embed)
 
 
-# ─── Sign View (button) ───────────────────────────────────────────────────────
-
-class SignView(discord.ui.View):
-    def __init__(self, spawn_id: str, card: dict, variant: str, spawn_value: int):
+class SpawnView(discord.ui.View):
+    def __init__(self, spawn_id: str, card: dict, disabled: bool = False):
         super().__init__(timeout=None)
         self.spawn_id = spawn_id
-        self.card = card
-        self.variant = variant
-        self.spawn_value = spawn_value
-
-    @discord.ui.button(label="Sign", style=discord.ButtonStyle.primary, custom_id="sign_card")
-    async def sign_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        # Check if already claimed before opening modal
-        spawn = db.get_spawn(self.spawn_id)
-        if spawn and not spawn["is_active"]:
-            await interaction.response.send_message(
-                f"**Already signed!** {cu.get_fail_caption()}",
-                ephemeral=True
-            )
-            return
-
-        modal = SignModal(
-            spawn_id=self.spawn_id,
-            card=self.card,
-            variant=self.variant,
-            spawn_value=self.spawn_value,
-            view=self
+        self.card     = card
+        btn           = discord.ui.Button(
+            label="Sign",
+            style=discord.ButtonStyle.primary,
+            custom_id=f"sign_{spawn_id}",
+            disabled=disabled,
         )
+        btn.callback = self._sign_callback
+        self.add_item(btn)
+
+    async def _sign_callback(self, interaction: discord.Interaction):
+        # Check if already claimed
+        spawn = db.get_spawn(self.spawn_id)
+        if not spawn or not spawn["is_active"]:
+            await interaction.response.send_message(":x: This card has already been signed!", ephemeral=True)
+            return
+        modal = SignModal(self.spawn_id, self.card)
         await interaction.response.send_modal(modal)
 
 
-# ─── Spawn message builder ────────────────────────────────────────────────────
-
-def build_spawn_message(card: dict, variant: str, value: int, caption: str) -> str:
-    v_emoji = cu.get_variant_emoji(variant)
-    r_emoji = cu.get_rarity_emoji(card["rarity"])
-    variant_display = variant if variant != "Standard" else "Normal"
-
-    # GP Special label
-    gp_line = ""
-    if variant == "GP Specs":
-        active_gp = cu.get_active_gp()
-        if active_gp:
-            flag = active_gp.get("flag", "")
-            gp_name = active_gp.get("name", "GP Special")
-            gp_line = f"\n**{flag} {gp_name}** — GP Exclusive card!"
-
-    lines = [
-        f"{v_emoji} **A card has appeared!**",
-        f"*{caption}*{gp_line}",
-        f"",
-        card["image_url"],
-        f"",
-        (
-            f"**Type:** {card['type'].capitalize()}  |  "
-            f"**Rarity:** {r_emoji} {card['rarity'].capitalize()}  |  "
-            f"**Variant:** {variant_display}  |  "
-            f"**Est. Value:** {value:,} coins"
-        ),
-    ]
-    return "\n".join(lines)
-
-
-# ─── Spawn System ─────────────────────────────────────────────────────────────
-
 class SpawnSystem:
     def __init__(self, bot: discord.Client):
-        self.bot = bot
-        self.active_spawns: dict = {}
+        self.bot              = bot
         self.spawn_channel_ids: list[int] = []
-        self._task = None
-
-    def set_channels(self, channel_ids: list[int]):
-        self.spawn_channel_ids = channel_ids
+        self._task            = None
 
     def start(self):
         self._task = asyncio.create_task(self._spawn_loop())
@@ -203,32 +156,53 @@ class SpawnSystem:
     async def _spawn_loop(self):
         await self.bot.wait_until_ready()
         while not self.bot.is_closed():
-            interval = random.randint(300, 900)  # 5-15 minutes
-            await asyncio.sleep(interval)
-            await self.do_spawn()
+            delay = random.randint(SPAWN_INTERVAL_MIN, SPAWN_INTERVAL_MAX)
+            await asyncio.sleep(delay)
+            if self.spawn_channel_ids:
+                channel_id = random.choice(self.spawn_channel_ids)
+                await self.do_spawn(channel_id=channel_id)
 
     async def do_spawn(self, channel_id: int = None):
-        if not self.spawn_channel_ids and channel_id is None:
+        if not channel_id:
+            if not self.spawn_channel_ids:
+                return
+            channel_id = random.choice(self.spawn_channel_ids)
+
+        channel = self.bot.get_channel(channel_id)
+        if not channel:
             return
 
-        target_channel_id = channel_id or random.choice(self.spawn_channel_ids)
-        channel = self.bot.get_channel(target_channel_id)
-        if channel is None:
+        card = cu.pick_random_spawnable_card()
+        if not card:
             return
 
-        card, variant = cu.pick_spawn_card()
-        value = cu.calculate_spawn_value(card, variant)
-        caption = cu.get_spawn_caption()
+        active_gp = cu.get_active_gp()
+        variant   = cu.roll_variant(active_gp=active_gp is not None)
+
+        # For GP Specs, attach the GP flag emoji
+        gp_tag = ""
+        if variant == "GP Specs" and active_gp:
+            gp_tag = f" {active_gp.get('flag', '')} {active_gp.get('name', 'GP Special')}"
+
         spawn_id = str(uuid.uuid4())
+        db.register_spawn(spawn_id, card["id"], variant, str(channel_id))
 
-        db.register_spawn(spawn_id, card["id"], variant, str(target_channel_id))
+        color   = cu.get_rarity_color(card["rarity"])
+        r_emoji = cu.get_rarity_emoji(card["rarity"])
+        v_emoji = cu.get_variant_emoji(variant)
+        val     = db.get_current_value(card["id"], variant, card.get("base_value", 100))
 
-        content = build_spawn_message(card, variant, value, caption)
-        view = SignView(spawn_id, card, variant, value)
+        embed = discord.Embed(color=color)
+        embed.set_image(url=card["image_url"])
 
-        try:
-            msg = await channel.send(content=content, view=view)
-            db.update_spawn_message(spawn_id, str(msg.id))
-            self.active_spawns[spawn_id] = True
-        except discord.HTTPException as e:
-            print(f"[Spawn] Failed to send spawn: {e}")
+        tag_line = f"**Type:** {card['type'].capitalize()} | **Rarity:** {r_emoji} {card['rarity'].capitalize()}"
+        if variant != "Standard":
+            tag_line += f" | **Variant:** {v_emoji} {variant}{gp_tag}"
+        tag_line += f"\n**Value:** :coin: {val:,}"
+
+        embed.description = tag_line
+        embed.set_footer(text="Type the card name to sign it! | RFRXDex")
+
+        view = SpawnView(spawn_id, card)
+        msg  = await channel.send(embed=embed, view=view)
+        db.update_spawn_message(spawn_id, str(msg.id))
