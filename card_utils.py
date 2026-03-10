@@ -191,3 +191,29 @@ def paginate(items: list, page: int, per_page: int = 10) -> Tuple[list, int]:
     page = max(1, min(page, total_pages))
     start = (page - 1) * per_page
     return items[start:start + per_page], total_pages
+
+
+def get_active_gp() -> dict:
+    """Returns the active GP spec dict, or None if no GP is active."""
+    data = load_cards()
+    active_id = data["gp_specs"].get("active")
+    if not active_id:
+        return None
+    for gp in data["gp_specs"]["list"]:
+        if gp["id"] == active_id and gp.get("active", False):
+            return gp
+    return None
+
+
+def get_gp_by_id(gp_id: str) -> dict:
+    data = load_cards()
+    for gp in data["gp_specs"]["list"]:
+        if gp["id"] == gp_id:
+            return gp
+    return None
+
+
+def get_sign_caption() -> str:
+    data = load_cards()
+    captions = data.get("sign_captions", ["Signed!"])
+    return random.choice(captions)
