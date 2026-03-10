@@ -11,12 +11,40 @@ SPAWN_INTERVAL_MIN = 300   # 5 min
 SPAWN_INTERVAL_MAX = 900   # 15 min
 
 FAIL_CAPTIONS = [
-    "Wrong! Take a closer look...",
-    "Nope! Try again.",
-    "That's not quite right!",
-    "Almost! But not quite.",
-    "Hmm, that doesn't match!",
-    "Not this time! Keep trying.",
+    "{user} I am schupid… I am schupid.",
+    "{user} WHY WHAT ARE YOU DOING?",
+    "{user} thought he caught a Howard Lau.",
+    "{user} I CAN'T IT'S BWOKEN, IT'S BWOKEN.",
+    "{user} thought he can go for the gap.",
+    "{user} GP2 Engine…",
+    "{user} I cannot fucking believe it, I cannot FUCKING believe it.",
+    "{user} Habibi must be the water.",
+    "{user} WHAT a fucking idiot. What a FUCKING idiot.",
+    "{user} NOOOOOOOOOOOOOOOOO-",
+    "{user} HEY HEY! STEERING WHEEL!",
+    "{user} Nothing just an inchident.",
+    "{user} rather value my life and my limbs.",
+    "{user} If my mom had balls, you would have caught it early.",
+    "{user} sorry that was Perez, Verstappen plus 20.",
+    "{user} Gap behind you muppet.",
+    "{user} WHAT THE FUCK ARE WE DOING HERE? I'm going home.",
+    "{user} I am SOO fucking shit. That's what I am.",
+]
+
+SPAWN_CAPTIONS = [
+    "It's friday then, it's saturday, sunday WHAT?",
+    "Smooooooth Operator",
+    "Simply Simply Lovely",
+    "But satisfaction",
+    "KI KI AYY",
+    "catch it, might be a shiny one?",
+    "bwoah",
+    "I had brisket, I had sausage, I had- oh, its an RFRX spawn!",
+    "real",
+    "when I do this, you start catching. Holla Todos!",
+    "NICOOOOO HUUUUUUUUUUULKENBBEERGGG",
+    "You've got a problem, catch this fucking RFRX Spawn.",
+    "If you no longer go for a catch that exist, you're no longer having this RFRX Spawn.",
 ]
 
 
@@ -40,11 +68,9 @@ class SignModal(discord.ui.Modal):
         valid      = [card_name] + aliases
 
         if user_input not in valid:
-            caption = random.choice(FAIL_CAPTIONS)
-            await interaction.response.send_message(
-                f":x: **{caption}** (You typed: `{self.answer.value}`)",
-                ephemeral=True
-            )
+            raw     = random.choice(FAIL_CAPTIONS)
+            caption = raw.replace("{user}", f"**{interaction.user.display_name}**")
+            await interaction.response.send_message(caption, ephemeral=True)
             return
 
         # Atomic claim
@@ -146,6 +172,10 @@ class SpawnSystem:
         self.spawn_channel_ids: list[int] = []
         self._task            = None
 
+    def set_channels(self, channel_ids: list):
+        """Alias to set spawn_channel_ids directly."""
+        self.spawn_channel_ids = channel_ids
+
     def start(self):
         self._task = asyncio.create_task(self._spawn_loop())
 
@@ -203,6 +233,7 @@ class SpawnSystem:
         embed.description = tag_line
         embed.set_footer(text="Type the card name to sign it! | RFRXDex")
 
+        spawn_caption = random.choice(SPAWN_CAPTIONS)
         view = SpawnView(spawn_id, card)
-        msg  = await channel.send(embed=embed, view=view)
+        msg  = await channel.send(content=f"*{spawn_caption}*", embed=embed, view=view)
         db.update_spawn_message(spawn_id, str(msg.id))
