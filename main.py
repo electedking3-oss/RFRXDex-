@@ -1,8 +1,3 @@
-“””
-main.py — RFRXDex Bot Entry Point
-Termux-friendly, reads token from .env
-“””
-
 import os
 import asyncio
 import discord
