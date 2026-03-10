@@ -4,7 +4,11 @@
       "id": "mclaren",
       "name": "McLaren",
       "type": "team",
-      "aliases": ["McLaren F1", "McLaren Team", "papaya"],
+      "aliases": [
+        "McLaren F1",
+        "McLaren Team",
+        "papaya"
+      ],
       "rarity": "epic",
       "marketable": true,
       "giftable": true,
@@ -12,13 +16,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1465613437462909019/1480223269515956244/3974C60C-880A-432C-A4A6-EA217B68EB61.png",
       "info_card_id": "mclaren_info",
       "base_value": 500,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "mclaren_info",
       "name": "McLaren Info",
       "type": "info",
-      "aliases": ["McLaren Info Card"],
+      "aliases": [
+        "McLaren Info Card"
+      ],
       "rarity": "rare",
       "marketable": false,
       "giftable": false,
@@ -32,7 +44,11 @@
       "id": "aston_martin",
       "name": "Aston Martin",
       "type": "team",
-      "aliases": ["Aston", "AMR", "Aston Martin F1"],
+      "aliases": [
+        "Aston",
+        "AMR",
+        "Aston Martin F1"
+      ],
       "rarity": "rare",
       "marketable": true,
       "giftable": true,
@@ -40,13 +56,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1465613437462909019/1480223742344036352/9EAA4516-B5BB-436B-B823-64DEA48406D9.png",
       "info_card_id": "aston_martin_info",
       "base_value": 350,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "aston_martin_info",
       "name": "Aston Martin Info",
       "type": "info",
-      "aliases": ["Aston Martin Info Card"],
+      "aliases": [
+        "Aston Martin Info Card"
+      ],
       "rarity": "common",
       "marketable": false,
       "giftable": false,
@@ -60,7 +84,11 @@
       "id": "red_bull",
       "name": "Red Bull",
       "type": "team",
-      "aliases": ["Red Bull Racing", "RBR", "Oracle Red Bull"],
+      "aliases": [
+        "Red Bull Racing",
+        "RBR",
+        "Oracle Red Bull"
+      ],
       "rarity": "mythic",
       "marketable": true,
       "giftable": true,
@@ -68,13 +96,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1465011917218123921/2C12E8E7-7B90-4F92-9EA1-7E75D7767630.png",
       "info_card_id": "red_bull_info",
       "base_value": 800,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "red_bull_info",
       "name": "Red Bull Info",
       "type": "info",
-      "aliases": ["Red Bull Info Card"],
+      "aliases": [
+        "Red Bull Info Card"
+      ],
       "rarity": "rare",
       "marketable": false,
       "giftable": false,
@@ -88,7 +124,10 @@
       "id": "williams",
       "name": "Williams",
       "type": "team",
-      "aliases": ["Williams Racing", "Williams F1"],
+      "aliases": [
+        "Williams Racing",
+        "Williams F1"
+      ],
       "rarity": "common",
       "marketable": true,
       "giftable": true,
@@ -96,13 +135,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1465204360576499978/BD8BC6F3-757B-4BFE-B27D-B80942D78EDF.png",
       "info_card_id": "williams_info",
       "base_value": 150,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "williams_info",
       "name": "Williams Info",
       "type": "info",
-      "aliases": ["Williams Info Card"],
+      "aliases": [
+        "Williams Info Card"
+      ],
       "rarity": "common",
       "marketable": false,
       "giftable": false,
@@ -116,7 +163,11 @@
       "id": "mgrxgs",
       "name": "MGRXGS",
       "type": "driver",
-      "aliases": ["MGR", "MGRX", "GS"],
+      "aliases": [
+        "MGR",
+        "MGRX",
+        "GS"
+      ],
       "rarity": "champion",
       "marketable": true,
       "giftable": true,
@@ -124,13 +175,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213305930944553/220D0663-385F-4988-9656-34D834C66031.png",
       "info_card_id": "mgrxgs_info",
       "base_value": 1200,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "mgrxgs_info",
       "name": "MGRXGS Info",
       "type": "info",
-      "aliases": ["MGRXGS Info Card"],
+      "aliases": [
+        "MGRXGS Info Card"
+      ],
       "rarity": "epic",
       "marketable": false,
       "giftable": false,
@@ -144,7 +203,9 @@
       "id": "michael",
       "name": "Michael",
       "type": "driver",
-      "aliases": ["Michael Driver"],
+      "aliases": [
+        "Michael Driver"
+      ],
       "rarity": "epic",
       "marketable": true,
       "giftable": true,
@@ -152,13 +213,22 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213307151224895/15135429-B125-4335-95D7-F4BD4DD47DC4.png",
       "info_card_id": null,
       "base_value": 600,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "nismo",
       "name": "Nismo",
       "type": "driver",
-      "aliases": ["Nismo Driver", "Nismo Racing"],
+      "aliases": [
+        "Nismo Driver",
+        "Nismo Racing"
+      ],
       "rarity": "rare",
       "marketable": true,
       "giftable": true,
@@ -166,13 +236,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213308514631712/68D6F0EA-2FCB-4E2E-8B6E-EB24C4B17D01.png",
       "info_card_id": null,
       "base_value": 400,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare"
+      ]
     },
     {
       "id": "genesis",
       "name": "Genesis",
       "type": "driver",
-      "aliases": ["Genesis Driver", "Gen"],
+      "aliases": [
+        "Genesis Driver",
+        "Gen"
+      ],
       "rarity": "rare",
       "marketable": true,
       "giftable": true,
@@ -180,13 +258,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213309755883541/9D64B5DD-D5FD-4E41-9989-3A7880785A2A.png",
       "info_card_id": null,
       "base_value": 380,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare"
+      ]
     },
     {
       "id": "cocoakyecorn",
       "name": "Cocoakyecorn",
       "type": "driver",
-      "aliases": ["Cocoa", "CKC"],
+      "aliases": [
+        "Cocoa",
+        "CKC"
+      ],
       "rarity": "limited",
       "marketable": true,
       "giftable": false,
@@ -194,13 +280,21 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213310913515683/EA898129-A113-4081-867E-00612D625742.png",
       "info_card_id": null,
       "base_value": 950,
-      "special_variants": ["Shiny", "Secret Rare", "Ultra Rare"]
+      "special_variants": [
+        "Shiny",
+        "Secret Rare",
+        "Ultra Rare"
+      ]
     },
     {
       "id": "avai_tp",
       "name": "Avai TP",
       "type": "driver",
-      "aliases": ["Avai", "TP", "AvaiTP"],
+      "aliases": [
+        "Avai",
+        "TP",
+        "AvaiTP"
+      ],
       "rarity": "epic",
       "marketable": true,
       "giftable": true,
@@ -208,13 +302,23 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213312339841138/AF2D1283-29BF-49D2-A385-8669F3FE0C9D.png",
       "info_card_id": null,
       "base_value": 550,
-      "special_variants": ["Shiny", "DOTD", "Secret Rare", "Ultra Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "DOTD",
+        "Secret Rare",
+        "Ultra Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "interlagos",
       "name": "Interlagos Brazil",
       "type": "track",
-      "aliases": ["Interlagos", "Brazil", "Sao Paulo"],
+      "aliases": [
+        "Interlagos",
+        "Brazil",
+        "Sao Paulo"
+      ],
       "rarity": "common",
       "marketable": true,
       "giftable": true,
@@ -222,13 +326,20 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213313707053221/F3BBDFB3-AEA8-4E17-89F7-6B3F0D805779.png",
       "info_card_id": null,
       "base_value": 200,
-      "special_variants": ["Shiny", "Secret Rare"]
+      "special_variants": [
+        "Shiny",
+        "Secret Rare"
+      ]
     },
     {
       "id": "silverstone",
       "name": "Britain Silverstone",
       "type": "track",
-      "aliases": ["Silverstone", "Britain", "British GP"],
+      "aliases": [
+        "Silverstone",
+        "Britain",
+        "British GP"
+      ],
       "rarity": "rare",
       "marketable": true,
       "giftable": true,
@@ -236,13 +347,22 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213314659287121/1488909E-9FF3-449A-B89F-40B63C682EC2.png",
       "info_card_id": null,
       "base_value": 300,
-      "special_variants": ["Shiny", "Secret Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "Secret Rare",
+        "GP Specs"
+      ]
     },
     {
       "id": "hockenheimring",
       "name": "Germany Hockenheimring",
       "type": "track",
-      "aliases": ["Hockenheim", "Germany", "German GP", "Hockenheimring"],
+      "aliases": [
+        "Hockenheim",
+        "Germany",
+        "German GP",
+        "Hockenheimring"
+      ],
       "rarity": "rare",
       "marketable": true,
       "giftable": true,
@@ -250,7 +370,11 @@
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213315455946772/F74DBF71-41E6-4A25-9944-763E709707E3.png",
       "info_card_id": null,
       "base_value": 300,
-      "special_variants": ["Shiny", "Secret Rare", "GP Specs"]
+      "special_variants": [
+        "Shiny",
+        "Secret Rare",
+        "GP Specs"
+      ]
     }
   ],
   "gp_specs": {
@@ -260,7 +384,217 @@
         "id": "china_special",
         "name": "China Special",
         "active": true,
-        "race_weekend": "Chinese Grand Prix"
+        "race_weekend": "Chinese Grand Prix",
+        "flag": "\ud83c\udde8\ud83c\uddf3",
+        "country": "China",
+        "exclusivity_msg": "This card is a Chinese GP exclusive!"
+      },
+      {
+        "id": "bahrain_special",
+        "name": "Bahrain Special",
+        "active": false,
+        "race_weekend": "Bahrain Grand Prix",
+        "flag": "\ud83c\udde7\ud83c\udded",
+        "country": "Bahrain",
+        "exclusivity_msg": "This card is a Bahrain GP exclusive!"
+      },
+      {
+        "id": "saudi_special",
+        "name": "Saudi Special",
+        "active": false,
+        "race_weekend": "Saudi Arabian Grand Prix",
+        "flag": "\ud83c\uddf8\ud83c\udde6",
+        "country": "Saudi Arabia",
+        "exclusivity_msg": "This card is a Saudi Arabian GP exclusive!"
+      },
+      {
+        "id": "australia_special",
+        "name": "Australia Special",
+        "active": false,
+        "race_weekend": "Australian Grand Prix",
+        "flag": "\ud83c\udde6\ud83c\uddfa",
+        "country": "Australia",
+        "exclusivity_msg": "This card is an Australian GP exclusive!"
+      },
+      {
+        "id": "japan_special",
+        "name": "Japan Special",
+        "active": false,
+        "race_weekend": "Japanese Grand Prix",
+        "flag": "\ud83c\uddef\ud83c\uddf5",
+        "country": "Japan",
+        "exclusivity_msg": "This card is a Japanese GP exclusive!"
+      },
+      {
+        "id": "miami_special",
+        "name": "Miami Special",
+        "active": false,
+        "race_weekend": "Miami Grand Prix",
+        "flag": "\ud83c\uddfa\ud83c\uddf8",
+        "country": "Miami",
+        "exclusivity_msg": "This card is a Miami GP exclusive!"
+      },
+      {
+        "id": "emilia_special",
+        "name": "Emilia Romagna Special",
+        "active": false,
+        "race_weekend": "Emilia Romagna Grand Prix",
+        "flag": "\ud83c\uddee\ud83c\uddf9",
+        "country": "Emilia Romagna",
+        "exclusivity_msg": "This card is an Emilia Romagna GP exclusive!"
+      },
+      {
+        "id": "monaco_special",
+        "name": "Monaco Special",
+        "active": false,
+        "race_weekend": "Monaco Grand Prix",
+        "flag": "\ud83c\uddf2\ud83c\udde8",
+        "country": "Monaco",
+        "exclusivity_msg": "This card is a Monaco GP exclusive!"
+      },
+      {
+        "id": "canada_special",
+        "name": "Canada Special",
+        "active": false,
+        "race_weekend": "Canadian Grand Prix",
+        "flag": "\ud83c\udde8\ud83c\udde6",
+        "country": "Canada",
+        "exclusivity_msg": "This card is a Canadian GP exclusive!"
+      },
+      {
+        "id": "spain_special",
+        "name": "Spain Special",
+        "active": false,
+        "race_weekend": "Spanish Grand Prix",
+        "flag": "\ud83c\uddea\ud83c\uddf8",
+        "country": "Spain",
+        "exclusivity_msg": "This card is a Spanish GP exclusive!"
+      },
+      {
+        "id": "austria_special",
+        "name": "Austria Special",
+        "active": false,
+        "race_weekend": "Austrian Grand Prix",
+        "flag": "\ud83c\udde6\ud83c\uddf9",
+        "country": "Austria",
+        "exclusivity_msg": "This card is an Austrian GP exclusive!"
+      },
+      {
+        "id": "britain_special",
+        "name": "Britain Special",
+        "active": false,
+        "race_weekend": "British Grand Prix",
+        "flag": "\ud83c\uddec\ud83c\udde7",
+        "country": "Britain",
+        "exclusivity_msg": "This card is a British GP exclusive!"
+      },
+      {
+        "id": "hungary_special",
+        "name": "Hungary Special",
+        "active": false,
+        "race_weekend": "Hungarian Grand Prix",
+        "flag": "\ud83c\udded\ud83c\uddfa",
+        "country": "Hungary",
+        "exclusivity_msg": "This card is a Hungarian GP exclusive!"
+      },
+      {
+        "id": "belgium_special",
+        "name": "Belgium Special",
+        "active": false,
+        "race_weekend": "Belgian Grand Prix",
+        "flag": "\ud83c\udde7\ud83c\uddea",
+        "country": "Belgium",
+        "exclusivity_msg": "This card is a Belgian GP exclusive!"
+      },
+      {
+        "id": "netherlands_special",
+        "name": "Dutch Special",
+        "active": false,
+        "race_weekend": "Dutch Grand Prix",
+        "flag": "\ud83c\uddf3\ud83c\uddf1",
+        "country": "Netherlands",
+        "exclusivity_msg": "This card is a Dutch GP exclusive!"
+      },
+      {
+        "id": "italy_special",
+        "name": "Italy Special",
+        "active": false,
+        "race_weekend": "Italian Grand Prix",
+        "flag": "\ud83c\uddee\ud83c\uddf9",
+        "country": "Italy",
+        "exclusivity_msg": "This card is an Italian GP exclusive!"
+      },
+      {
+        "id": "azerbaijan_special",
+        "name": "Azerbaijan Special",
+        "active": false,
+        "race_weekend": "Azerbaijan Grand Prix",
+        "flag": "\ud83c\udde6\ud83c\uddff",
+        "country": "Azerbaijan",
+        "exclusivity_msg": "This card is an Azerbaijan GP exclusive!"
+      },
+      {
+        "id": "singapore_special",
+        "name": "Singapore Special",
+        "active": false,
+        "race_weekend": "Singapore Grand Prix",
+        "flag": "\ud83c\uddf8\ud83c\uddec",
+        "country": "Singapore",
+        "exclusivity_msg": "This card is a Singapore GP exclusive!"
+      },
+      {
+        "id": "usa_special",
+        "name": "USA Special",
+        "active": false,
+        "race_weekend": "United States Grand Prix",
+        "flag": "\ud83c\uddfa\ud83c\uddf8",
+        "country": "USA",
+        "exclusivity_msg": "This card is a USGP exclusive!"
+      },
+      {
+        "id": "mexico_special",
+        "name": "Mexico Special",
+        "active": false,
+        "race_weekend": "Mexico City Grand Prix",
+        "flag": "\ud83c\uddf2\ud83c\uddfd",
+        "country": "Mexico",
+        "exclusivity_msg": "This card is a Mexican GP exclusive!"
+      },
+      {
+        "id": "brazil_special",
+        "name": "Brazil Special",
+        "active": false,
+        "race_weekend": "Brazilian Grand Prix",
+        "flag": "\ud83c\udde7\ud83c\uddf7",
+        "country": "Brazil",
+        "exclusivity_msg": "This card is a Brazilian GP exclusive!"
+      },
+      {
+        "id": "lasvegas_special",
+        "name": "Las Vegas Special",
+        "active": false,
+        "race_weekend": "Las Vegas Grand Prix",
+        "flag": "\ud83c\uddfa\ud83c\uddf8",
+        "country": "Las Vegas",
+        "exclusivity_msg": "This card is a Las Vegas GP exclusive!"
+      },
+      {
+        "id": "qatar_special",
+        "name": "Qatar Special",
+        "active": false,
+        "race_weekend": "Qatar Grand Prix",
+        "flag": "\ud83c\uddf6\ud83c\udde6",
+        "country": "Qatar",
+        "exclusivity_msg": "This card is a Qatar GP exclusive!"
+      },
+      {
+        "id": "abudhabi_special",
+        "name": "Abu Dhabi Special",
+        "active": false,
+        "race_weekend": "Abu Dhabi Grand Prix",
+        "flag": "\ud83c\udde6\ud83c\uddea",
+        "country": "Abu Dhabi",
+        "exclusivity_msg": "This card is an Abu Dhabi GP exclusive!"
       }
     ]
   },
@@ -288,37 +622,49 @@
     "Collectors Special": 15.0
   },
   "spawn_captions": [
-    "Catch it, might be a shiny one? ð",
-    "NICOOOOO HUUUUUUUUUUULKENBEEERRRGGG ðï¸",
-    "It's friday then, it's saturday sunday WHAT? ðµ",
-    "Smooooooth Operator ð",
-    "A wild card has appeared on the grid! ð",
-    "Lights out and away we go! ð¦",
-    "DRS is openâ¦ so is this card! ð¨",
-    "Box box box! But firstâ¦ catch this! ð¦",
-    "This one's got more downforce than an RB20 ð§",
-    "Safety Car is INâ¦ but this card is OUT! ðï¸",
-    "Radio check: Card spotted on track! ð»",
-    "The gap is closing... catch it before it's gone! â±ï¸",
-    "FASTEST LAP CARD just dropped ð£",
-    "Engineers say it's a P1 card, let's see ð¬",
-    "This card has more pace than a DRS train ð¨",
-    "It's a LIGHTS OUT moment for this card â¨",
-    "We're going racing! Catch that card! ð",
-    "DNF or catch? Your choice ð"
+    "Catch it, might be a shiny one? \ud83d\udc40",
+    "NICOOOOO HUUUUUUUUUUULKENBEEERRRGGG \ud83c\udfce\ufe0f",
+    "It's friday then, it's saturday sunday WHAT? \ud83c\udfb5",
+    "Smooooooth Operator \ud83d\ude0e",
+    "A wild card has appeared on the grid! \ud83c\udfc1",
+    "Lights out and away we go! \ud83d\udea6",
+    "DRS is open\u2026 so is this card! \ud83d\udca8",
+    "Box box box! But first\u2026 catch this! \ud83d\udce6",
+    "This one's got more downforce than an RB20 \ud83d\udd27",
+    "Safety Car is IN\u2026 but this card is OUT! \ud83c\udfce\ufe0f",
+    "Radio check: Card spotted on track! \ud83d\udcfb",
+    "The gap is closing... catch it before it's gone! \u23f1\ufe0f",
+    "FASTEST LAP CARD just dropped \ud83d\udfe3",
+    "Engineers say it's a P1 card, let's see \ud83d\udd2c",
+    "This card has more pace than a DRS train \ud83d\udca8",
+    "It's a LIGHTS OUT moment for this card \u2728",
+    "We're going racing! Catch that card! \ud83c\udfc6",
+    "DNF or catch? Your choice \ud83d\udc40"
   ],
   "fail_captions": [
-    "I am schupidâ¦ I am schupid. ð¤¦",
-    "WHY WHAT ARE YOU DOING? ð¤",
-    "Gap behind you muppet. ð",
-    "You had ONE job. ONE. ð¤£",
-    "Even the stewards are faster than you ð¨ââï¸",
-    "Radio silenceâ¦ because you missed it ð»",
-    "Drive-through penalty for missing that ð",
-    "That's a 5-second penalty for slow reactions â±ï¸",
-    "To be honest with you, that was embarrassing ð¬",
-    "My grandmother catches faster, and she's in the gravel ðµ",
-    "Your team is very disappointed ð",
-    "That card just overtook you on the straight ð"
+    "I am schupid\u2026 I am schupid. \ud83e\udd26",
+    "WHY WHAT ARE YOU DOING? \ud83d\ude24",
+    "Gap behind you muppet. \ud83d\ude02",
+    "You had ONE job. ONE. \ud83e\udd23",
+    "Even the stewards are faster than you \ud83d\udc68\u200d\u2696\ufe0f",
+    "Radio silence\u2026 because you missed it \ud83d\udcfb",
+    "Drive-through penalty for missing that \ud83d\ude97",
+    "That's a 5-second penalty for slow reactions \u23f1\ufe0f",
+    "To be honest with you, that was embarrassing \ud83d\ude2c",
+    "My grandmother catches faster, and she's in the gravel \ud83d\udc75",
+    "Your team is very disappointed \ud83d\ude14",
+    "That card just overtook you on the straight \ud83d\ude05"
+  ],
+  "sign_captions": [
+    "Silly you, you signed the card you almost dropped!",
+    "Smooth hands! That card didn't stand a chance.",
+    "Into the collection it goes. No hesitation.",
+    "First try? Don't lie.",
+    "The paddock is proud of you today.",
+    "Signed, sealed, delivered. BOOM.",
+    "You knew exactly what that was. Respect.",
+    "Clean sign. Very tidy.",
+    "The card recognises a true collector.",
+    "That's going straight into the display case."
   ]
 }
