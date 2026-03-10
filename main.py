@@ -11,9 +11,9 @@ from spawn_system import SpawnSystem
 # ─── Load environment ────────────────────────────────────────────────────────
 
 load_dotenv()
-TOKEN = os.getenv(“DISCORD_TOKEN”)
+TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
-raise RuntimeError(“DISCORD_TOKEN not set in .env!”)
+raise RuntimeError("DISCORD_TOKEN not set in .env!")
 
 # ─── Configure spawn channels ───────────────────────────────────────────────
 
