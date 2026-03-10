@@ -1,7 +1,3 @@
-“””
-spawn_system.py — Auto-spawn loop, spawn embeds, catch button logic
-“””
-
 import discord
 import asyncio
 import random
