@@ -1,7 +1,3 @@
-“””
-database.py — SQLite database management for RFRXDex
-“””
-
 import sqlite3
 import os
 import json
