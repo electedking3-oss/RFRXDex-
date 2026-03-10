@@ -77,7 +77,7 @@ async def on_command_error(self, ctx, error):
 def main():
 bot = RFRXDex()
 try:
-bot.run(DISCORD_TOKEN)
+bot.run(TOKEN)
 except KeyboardInterrupt:
 print(”\n[Bot] Shutting down…”)
 
