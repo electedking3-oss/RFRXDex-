@@ -1,3 +1,8 @@
+“””
+main.py — RFRXDex Bot Entry Point
+Termux-friendly, reads token from .env
+“””
+
 import os
 import asyncio
 import discord
@@ -72,7 +77,7 @@ async def on_command_error(self, ctx, error):
 def main():
 bot = RFRXDex()
 try:
-bot.run(TOKEN)
+bot.run(DISCORD_TOKEN)
 except KeyboardInterrupt:
 print(”\n[Bot] Shutting down…”)
 
