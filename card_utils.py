@@ -1,7 +1,3 @@
-“””
-card_utils.py — Card data loading, RNG spawn logic, variant resolution
-“””
-
 import json
 import random
 import os
