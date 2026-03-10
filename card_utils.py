@@ -1,219 +1,187 @@
 import json
-import random
 import os
+import random
+import string
 import uuid
-from typing import Optional, Tuple
 
 CARDS_PATH = os.path.join(os.path.dirname(__file__), "cards.json")
-_card_cache = None
+_cards_cache = None
+
+RARITY_WEIGHTS = {
+    "common":   45,
+    "rare":     30,
+    "epic":     15,
+    "mythic":    6,
+    "champion":  3,
+    "limited":   1,
+}
+
+RARITY_COLORS = {
+    "common":   0xAAAAAA,
+    "rare":     0x3498DB,
+    "epic":     0x9B59B6,
+    "mythic":   0xFF8C00,
+    "champion": 0xFFD700,
+    "limited":  0xFF0000,
+}
+
+RARITY_EMOJIS = {
+    "common":   ":white_circle:",
+    "rare":     ":blue_circle:",
+    "epic":     ":purple_circle:",
+    "mythic":   ":orange_circle:",
+    "champion": ":star:",
+    "limited":  ":red_circle:",
+}
+
+VARIANT_MULTIPLIERS = {
+    "Standard":           1.0,
+    "GP Specs":           2.5,
+    "DOTD":               1.8,
+    "Shiny":              2.0,
+    "Secret Rare":        4.0,
+    "Ultra Rare":         8.0,
+    "Collectors Special": 15.0,
+}
+
+VARIANT_WEIGHTS = {
+    "Standard":    100,
+    "GP Specs":     20,
+    "DOTD":         15,
+    "Shiny":        10,
+    "Secret Rare":   3,
+    "Ultra Rare":    1,
+}
+
+VARIANT_EMOJIS = {
+    "Standard":           "",
+    "GP Specs":           ":race_car:",
+    "DOTD":               ":trophy:",
+    "Shiny":              ":sparkles:",
+    "Secret Rare":        ":crystal_ball:",
+    "Ultra Rare":         ":gem:",
+    "Collectors Special": ":crown:",
+}
 
 
-def load_cards() -> dict:
-    global _card_cache
-    if _card_cache is None:
-        with open(CARDS_PATH, "r") as f:
-            _card_cache = json.load(f)
-    return _card_cache
+def _load_cards():
+    global _cards_cache
+    if _cards_cache is not None:
+        return _cards_cache
+    with open(CARDS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    _cards_cache = data
+    return data
 
 
 def get_all_cards() -> list:
-    return load_cards()["cards"]
+    return _load_cards().get("cards", [])
 
 
-def get_card_by_id(card_id: str) -> Optional[dict]:
-    for card in get_all_cards():
-        if card["id"] == card_id:
-            return card
+def get_card_by_id(card_id: str) -> dict | None:
+    for c in get_all_cards():
+        if c["id"] == card_id:
+            return c
     return None
 
 
-def get_spawnable_cards() -> list:
-    return [c for c in get_all_cards() if c.get("spawnable", False)]
-
-
-def get_card_by_name(name: str) -> Optional[dict]:
+def get_card_by_name(name: str) -> dict | None:
     name_lower = name.lower().strip()
-    for card in get_all_cards():
-        if card["name"].lower() == name_lower:
-            return card
-        for alias in card.get("aliases", []):
-            if alias.lower() == name_lower:
-                return card
+    # Exact match first
+    for c in get_all_cards():
+        if c["name"].lower() == name_lower:
+            return c
+    # Alias match
+    for c in get_all_cards():
+        aliases = [a.lower() for a in c.get("aliases", [])]
+        if name_lower in aliases:
+            return c
+    # Partial match
+    for c in get_all_cards():
+        if name_lower in c["name"].lower():
+            return c
     return None
 
 
 def get_rarity_color(rarity: str) -> int:
-    """Returns Discord embed color int for each rarity."""
-    colors = {
-        "common":   0xAAAAAA,  # grey
-        "rare":     0x3498DB,  # blue
-        "epic":     0x9B59B6,  # purple
-        "mythic":   0xFF8C00,  # dark orange
-        "champion": 0xFFD700,  # gold
-        "limited":  0xFF0000,  # red
-    }
-    return colors.get(rarity.lower(), 0xFFFFFF)
-
-
-def get_variant_emoji(variant: str) -> str:
-    emojis = {
-        "Standard":          "🃏",
-        "Shiny":             "✨",
-        "DOTD":              "🏆",
-        "GP Specs":          "🏎️",
-        "Secret Rare":       "🔮",
-        "Ultra Rare":        "💎",
-        "Collectors Special":"👑",
-    }
-    return emojis.get(variant, "🃏")
+    return RARITY_COLORS.get(rarity.lower(), 0xAAAAAA)
 
 
 def get_rarity_emoji(rarity: str) -> str:
-    emojis = {
-        "common":   "⚪",
-        "rare":     "🔵",
-        "epic":     "🟣",
-        "mythic":   "🟠",
-        "champion": "🌟",
-        "limited":  "🔴",
-    }
-    return emojis.get(rarity.lower(), "⚪")
+    return RARITY_EMOJIS.get(rarity.lower(), ":white_circle:")
 
 
-def roll_variant(card: dict) -> str:
-    """Rolls for a special variant. Returns 'Standard' if none proc."""
-    data = load_cards()
-    variant_chances = data["variant_chances"]
-    active_gp = data["gp_specs"].get("active")
-
-    available_variants = card.get("special_variants", [])
-    # Check GP Specs availability
-    if "GP Specs" in available_variants and not active_gp:
-        available_variants = [v for v in available_variants if v != "GP Specs"]
-
-    # Roll from rarest to most common
-    order = ["Ultra Rare", "Secret Rare", "Shiny", "DOTD", "GP Specs"]
-    for v in order:
-        if v not in available_variants:
-            continue
-        chance = variant_chances.get(v, 0)
-        if random.uniform(0, 100) <= chance:
-            return v
-    return "Standard"
+def get_variant_emoji(variant: str) -> str:
+    return VARIANT_EMOJIS.get(variant, "")
 
 
-def calculate_spawn_value(card: dict, variant: str) -> int:
-    """Returns the current dynamic value for a card+variant spawn."""
-    from database import get_current_value
-    data = load_cards()
-    multipliers = data["variant_value_multipliers"]
-    base = card["base_value"]
-    current = get_current_value(card["id"], variant, base)
-    mult = multipliers.get(variant, 1.0)
-    return max(1, int(current * mult))
-
-
-def pick_spawn_card() -> Tuple[dict, str]:
-    """
-    Picks a random spawnable card weighted by rarity,
-    then rolls for a variant.
-    Returns (card_dict, variant_str)
-    """
-    data = load_cards()
-    rarity_weights = data["rarity_weights"]
-    spawnable = get_spawnable_cards()
-
-    # Group by rarity
-    by_rarity: dict[str, list] = {}
-    for card in spawnable:
-        r = card["rarity"]
-        by_rarity.setdefault(r, []).append(card)
-
-    # Weighted rarity roll
-    rarities = list(rarity_weights.keys())
-    weights = [rarity_weights[r] for r in rarities]
-    chosen_rarity = random.choices(rarities, weights=weights, k=1)[0]
-
-    # Fallback if no cards for that rarity
-    if chosen_rarity not in by_rarity or not by_rarity[chosen_rarity]:
-        all_cards = spawnable
-        chosen_card = random.choice(all_cards)
-    else:
-        chosen_card = random.choice(by_rarity[chosen_rarity])
-
-    variant = roll_variant(chosen_card)
-    return chosen_card, variant
+def get_card_display_name(card: dict, variant: str = "Standard") -> str:
+    v_emoji = get_variant_emoji(variant)
+    if v_emoji:
+        return f"{v_emoji} {card['name']} [{variant}]"
+    return card["name"]
 
 
 def generate_instance_id() -> str:
-    return str(uuid.uuid4())
+    """Generate a unique instance ID like #2959CF"""
+    return uuid.uuid4().hex[:6].upper()
 
 
-def get_spawn_caption() -> str:
-    return random.choice(load_cards()["spawn_captions"])
+def roll_variant(active_gp: bool = False) -> str:
+    """Roll for a card variant. If active_gp=True, GP Specs is eligible."""
+    pool = dict(VARIANT_WEIGHTS)
+    if not active_gp:
+        pool.pop("GP Specs", None)
+
+    total = sum(pool.values())
+    roll  = random.randint(1, total)
+    cumulative = 0
+    for variant, weight in pool.items():
+        cumulative += weight
+        if roll <= cumulative:
+            return variant
+    return "Standard"
 
 
-def get_fail_caption() -> str:
-    return random.choice(load_cards()["fail_captions"])
-
-
-def format_value_change(current_value: int, catch_value: int, base_value: int) -> Tuple[str, str]:
-    """
-    Returns (+X%, +Y%) strings for catch message.
-    X = % change since last sale, Y = % change since base.
-    """
-    if catch_value and catch_value > 0:
-        x_pct = ((current_value - catch_value) / catch_value) * 100
-        x_str = f"+{x_pct:.1f}%" if x_pct >= 0 else f"{x_pct:.1f}%"
-    else:
-        x_str = "+0.0%"
-
-    if base_value and base_value > 0:
-        y_pct = ((current_value - base_value) / base_value) * 100
-        y_str = f"+{y_pct:.1f}%" if y_pct >= 0 else f"{y_pct:.1f}%"
-    else:
-        y_str = "+0.0%"
-
-    return x_str, y_str
-
-
-def get_card_display_name(card: dict, variant: str) -> str:
-    name = card["name"]
-    if variant and variant != "Standard":
-        name = f"{name} [{variant}]"
-    return name
-
-
-def paginate(items: list, page: int, per_page: int = 10) -> Tuple[list, int]:
-    """Returns (page_items, total_pages)."""
-    total = len(items)
-    total_pages = max(1, (total + per_page - 1) // per_page)
-    page = max(1, min(page, total_pages))
-    start = (page - 1) * per_page
-    return items[start:start + per_page], total_pages
-
-
-def get_active_gp() -> dict:
-    """Returns the active GP spec dict, or None if no GP is active."""
-    data = load_cards()
-    active_id = data["gp_specs"].get("active")
-    if not active_id:
+def pick_random_spawnable_card() -> dict | None:
+    """Pick a random card weighted by rarity from spawnable cards."""
+    spawnable = [c for c in get_all_cards() if c.get("spawnable")]
+    if not spawnable:
         return None
-    for gp in data["gp_specs"]["list"]:
-        if gp["id"] == active_id and gp.get("active", False):
+
+    weights = [RARITY_WEIGHTS.get(c["rarity"].lower(), 1) for c in spawnable]
+    return random.choices(spawnable, weights=weights, k=1)[0]
+
+
+def get_active_gp() -> dict | None:
+    """Return the currently active GP spec from cards.json, or None."""
+    data = _load_cards()
+    gps  = data.get("gp_specs", {}).get("list", [])
+    for gp in gps:
+        if gp.get("active"):
             return gp
     return None
 
 
-def get_gp_by_id(gp_id: str) -> dict:
-    data = load_cards()
-    for gp in data["gp_specs"]["list"]:
-        if gp["id"] == gp_id:
-            return gp
-    return None
+def compute_catch_value(card: dict, variant: str) -> int:
+    """Compute the initial value for a caught card."""
+    import database as db
+    base = db.get_current_value(card["id"], variant, card.get("base_value", 100))
+    mult = VARIANT_MULTIPLIERS.get(variant, 1.0)
+    return int(base * mult)
 
 
-def get_sign_caption() -> str:
-    data = load_cards()
-    captions = data.get("sign_captions", ["Signed!"])
-    return random.choice(captions)
+def roll_atk_hp_mods() -> tuple[int, int]:
+    """Roll ATK and HP modifier percentages for a card instance (-20 to +20)."""
+    atk = random.randint(-20, 20)
+    hp  = random.randint(-20, 20)
+    return atk, hp
+
+
+def format_value_change(old_val: int, new_val: int) -> str:
+    """Return a formatted string showing value change percentage."""
+    if old_val == 0:
+        return "+0%"
+    pct = ((new_val - old_val) / old_val) * 100
+    sign = "+" if pct >= 0 else ""
+    return f"{sign}{pct:.1f}%"
