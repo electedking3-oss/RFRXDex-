@@ -10,7 +10,10 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["mcl", "mclaren f1"],
+      "aliases": [
+        "mcl",
+        "mclaren f1"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1465613437462909019/1480223269515956244/3974C60C-880A-432C-A4A6-EA217B68EB61.png?ex=69b0df18&is=69af8d98&hm=9c398b55d82784737b017be11111ad22ca5aa30d029ed17ea4f4b78ff2bdb06f&",
       "info_card_id": "mclaren_info",
       "caption": "The papaya speedsters!"
@@ -38,7 +41,10 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["amr", "aston"],
+      "aliases": [
+        "amr",
+        "aston"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1465613437462909019/1480223742344036352/9EAA4516-B5BB-436B-B823-64DEA48406D9.png?ex=69b0df89&is=69af8e09&hm=68afadaf876b70642b85d0458ad66fc39c877981a7a0a9103600924b369b4291&",
       "info_card_id": "aston_martin_info",
       "caption": "British Racing Green!"
@@ -66,7 +72,11 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["rbr", "redbull", "red bull racing"],
+      "aliases": [
+        "rbr",
+        "redbull",
+        "red bull racing"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1465011917218123921/2C12E8E7-7B90-4F92-9EA1-7E75D7767630.png?ex=69b0e76b&is=69af95eb&hm=ab89708f6328652fca8640c44f7b1084a765682ea26516cb008ab723e04cf13a&",
       "info_card_id": "red_bull_info",
       "caption": "Gives you wings!"
@@ -94,7 +104,9 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["williams racing"],
+      "aliases": [
+        "williams racing"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1465204360576499978/BD8BC6F3-757B-4BFE-B27D-B80942D78EDF.png?ex=69b0f1e5&is=69afa065&hm=815ac0bae01ab584c2407c0a9a0840cf688c251275503c6cc2972c67d426955a&",
       "info_card_id": "williams_info",
       "caption": "Grove's finest!"
@@ -122,7 +134,10 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["mgr", "xgs"],
+      "aliases": [
+        "mgr",
+        "xgs"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213305930944553/220D0663-385F-4988-9656-34D834C66031.png?ex=69b15832&is=69b006b2&hm=2eb3af7b3b61716b18cd83da7f0c61391533b8c1b1178c226bae0d2918d02cb8&",
       "info_card_id": "mgrxgs_info",
       "caption": "The RFRX League Champion!"
@@ -192,7 +207,10 @@
       "marketable": true,
       "giftable": false,
       "season": "Limited",
-      "aliases": ["cocoa", "kyecorn"],
+      "aliases": [
+        "cocoa",
+        "kyecorn"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213310913515683/EA898129-A113-4081-867E-00612D625742.png?ex=69b15833&is=69b006b3&hm=93055ad6b2db61c17d42b7b8f67d71422e3f146215e60dc26f4cdc578f29c32e&",
       "info_card_id": "cocoakyecorn_info",
       "caption": "A true limited edition!"
@@ -220,7 +238,10 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["avai", "tp"],
+      "aliases": [
+        "avai",
+        "tp"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213312339841138/AF2D1283-29BF-49D2-A385-8669F3FE0C9D.png?ex=69b15833&is=69b006b3&hm=81f7ea74e75e7e165955920d8ad1f53fbaf063d54b7b34b8898718be248ea2f7&",
       "caption": "Full throttle!"
     },
@@ -234,7 +255,11 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["interlagos", "brazil", "sao paulo"],
+      "aliases": [
+        "interlagos",
+        "brazil",
+        "sao paulo"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213313707053221/F3BBDFB3-AEA8-4E17-89F7-6B3F0D805779.png?ex=69b15834&is=69b006b4&hm=bab30894b654b13d5daeed1b358e89e6c56971e59f2acfbadc0d2027c165f2b8&",
       "caption": "Senna's home circuit!"
     },
@@ -248,7 +273,11 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["silverstone", "britain", "british gp"],
+      "aliases": [
+        "silverstone",
+        "britain",
+        "british gp"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213314659287121/1488909E-9FF3-449A-B89F-40B63C682EC2.png?ex=69b15834&is=69b006b4&hm=711465f178a4fc9c6482e5ac3edc9945d8c4bfc7d23156b9a25ce0f184a42950&",
       "caption": "Home of British motorsport!"
     },
@@ -262,7 +291,11 @@
       "marketable": true,
       "giftable": true,
       "season": "F1 2025",
-      "aliases": ["hockenheim", "germany", "german gp"],
+      "aliases": [
+        "hockenheim",
+        "germany",
+        "german gp"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1468213315455946772/F74DBF71-41E6-4A25-9944-743E709707E3.png?ex=69b15834&is=69b006b4&hm=bd933992244ac0abf63aad617612e5f0f611b3fb7e1d17c68333cfceb3c6e248&",
       "caption": "The German classic!"
     },
@@ -276,8 +309,27 @@
       "marketable": false,
       "giftable": false,
       "season": "F1 2025",
-      "aliases": ["hockenheim info"],
+      "aliases": [
+        "hockenheim info"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1465613437462909019/1480231219860865115/5C655546-0DCD-4A55-8309-F68450A40983.png?ex=69b0e680&is=69af9500&hm=e49f68ed7f4ff1ec475fc9300153333e28ce57a70aeb58fbc93706726130abea&"
+    },
+    {
+      "id": "howard",
+      "name": "Howard",
+      "type": "driver",
+      "rarity": "epic",
+      "base_value": 500,
+      "spawnable": true,
+      "marketable": true,
+      "giftable": true,
+      "season": "F1 2025",
+      "aliases": [
+        "howard lau"
+      ],
+      "image_url": "https://cdn.discordapp.com/attachments/1464668680104448159/1465215276218974250/7CC9BD21-3358-4FD7-B758-8DD2D9BD07D3.png?ex=69b1a4d0&is=69b05350&hm=21369f75f3ab485d520c12c9f694b88bd391363a9a34e172224e274bdc194bce&",
+      "info_card_id": "howard_info",
+      "caption": "Did not know what they were doing."
     },
     {
       "id": "howard_info",
@@ -289,37 +341,231 @@
       "marketable": false,
       "giftable": false,
       "season": "F1 2025",
-      "aliases": ["howard"],
+      "aliases": [
+        "howard info"
+      ],
       "image_url": "https://cdn.discordapp.com/attachments/1464649270211776727/1464992010422190183/72C8E8BE-41A7-4DA2-908A-BE853CA721FD.png?ex=69b0d4e1&is=69af8361&hm=d4c163a338e6450d1800ca0db6a6c3e5c7aa0302c97d4d7a1db7f6526a1d63a6&"
     }
   ],
   "gp_specs": {
     "active": "china_special",
     "list": [
-      {"id": "china_special",    "name": "Chinese GP Special",    "active": true,  "race_weekend": "Chinese GP",    "flag": "ð¨ð³", "country": "China",       "exclusivity_msg": "Caught during the Chinese GP race weekend!"},
-      {"id": "japan_special",    "name": "Japanese GP Special",   "active": false, "race_weekend": "Japanese GP",   "flag": "ð¯ðµ", "country": "Japan",       "exclusivity_msg": "Caught during the Japanese GP race weekend!"},
-      {"id": "bahrain_special",  "name": "Bahrain GP Special",    "active": false, "race_weekend": "Bahrain GP",    "flag": "ð§ð­", "country": "Bahrain",     "exclusivity_msg": "Caught during the Bahrain GP race weekend!"},
-      {"id": "saudi_special",    "name": "Saudi GP Special",      "active": false, "race_weekend": "Saudi GP",      "flag": "ð¸ð¦", "country": "Saudi Arabia","exclusivity_msg": "Caught during the Saudi GP race weekend!"},
-      {"id": "australia_special","name": "Australian GP Special", "active": false, "race_weekend": "Australian GP", "flag": "ð¦ðº", "country": "Australia",  "exclusivity_msg": "Caught during the Australian GP race weekend!"},
-      {"id": "miami_special",    "name": "Miami GP Special",      "active": false, "race_weekend": "Miami GP",      "flag": "ðºð¸", "country": "USA",         "exclusivity_msg": "Caught during the Miami GP race weekend!"},
-      {"id": "imola_special",    "name": "Emilia Romagna Special","active": false, "race_weekend": "Emilia Romagna GP","flag": "ð®ð¹","country": "Italy",    "exclusivity_msg": "Caught during the Emilia Romagna GP race weekend!"},
-      {"id": "monaco_special",   "name": "Monaco GP Special",     "active": false, "race_weekend": "Monaco GP",     "flag": "ð²ð¨", "country": "Monaco",     "exclusivity_msg": "Caught during the Monaco GP race weekend!"},
-      {"id": "canada_special",   "name": "Canadian GP Special",   "active": false, "race_weekend": "Canadian GP",   "flag": "ð¨ð¦", "country": "Canada",     "exclusivity_msg": "Caught during the Canadian GP race weekend!"},
-      {"id": "spain_special",    "name": "Spanish GP Special",    "active": false, "race_weekend": "Spanish GP",    "flag": "ðªð¸", "country": "Spain",      "exclusivity_msg": "Caught during the Spanish GP race weekend!"},
-      {"id": "austria_special",  "name": "Austrian GP Special",   "active": false, "race_weekend": "Austrian GP",   "flag": "ð¦ð¹", "country": "Austria",    "exclusivity_msg": "Caught during the Austrian GP race weekend!"},
-      {"id": "britain_special",  "name": "British GP Special",    "active": false, "race_weekend": "British GP",    "flag": "ð¬ð§", "country": "Britain",    "exclusivity_msg": "Caught during the British GP race weekend!"},
-      {"id": "hungary_special",  "name": "Hungarian GP Special",  "active": false, "race_weekend": "Hungarian GP",  "flag": "ð­ðº", "country": "Hungary",    "exclusivity_msg": "Caught during the Hungarian GP race weekend!"},
-      {"id": "belgium_special",  "name": "Belgian GP Special",    "active": false, "race_weekend": "Belgian GP",    "flag": "ð§ðª", "country": "Belgium",    "exclusivity_msg": "Caught during the Belgian GP race weekend!"},
-      {"id": "dutch_special",    "name": "Dutch GP Special",      "active": false, "race_weekend": "Dutch GP",      "flag": "ð³ð±", "country": "Netherlands","exclusivity_msg": "Caught during the Dutch GP race weekend!"},
-      {"id": "italy_special",    "name": "Italian GP Special",    "active": false, "race_weekend": "Italian GP",    "flag": "ð®ð¹", "country": "Italy",      "exclusivity_msg": "Caught during the Italian GP race weekend!"},
-      {"id": "azerbaijan_special","name": "Azerbaijan GP Special","active": false, "race_weekend": "Azerbaijan GP", "flag": "ð¦ð¿", "country": "Azerbaijan", "exclusivity_msg": "Caught during the Azerbaijan GP race weekend!"},
-      {"id": "singapore_special","name": "Singapore GP Special",  "active": false, "race_weekend": "Singapore GP",  "flag": "ð¸ð¬", "country": "Singapore",  "exclusivity_msg": "Caught during the Singapore GP race weekend!"},
-      {"id": "usa_special",      "name": "COTA GP Special",       "active": false, "race_weekend": "US GP",         "flag": "ðºð¸", "country": "USA",         "exclusivity_msg": "Caught during the COTA GP race weekend!"},
-      {"id": "mexico_special",   "name": "Mexican GP Special",    "active": false, "race_weekend": "Mexican GP",    "flag": "ð²ð½", "country": "Mexico",     "exclusivity_msg": "Caught during the Mexican GP race weekend!"},
-      {"id": "lasvegas_special", "name": "Las Vegas GP Special",  "active": false, "race_weekend": "Las Vegas GP",  "flag": "ðºð¸", "country": "USA",         "exclusivity_msg": "Caught during the Las Vegas GP race weekend!"},
-      {"id": "qatar_special",    "name": "Qatar GP Special",      "active": false, "race_weekend": "Qatar GP",      "flag": "ð¶ð¦", "country": "Qatar",      "exclusivity_msg": "Caught during the Qatar GP race weekend!"},
-      {"id": "abudhabi_special", "name": "Abu Dhabi GP Special",  "active": false, "race_weekend": "Abu Dhabi GP",  "flag": "ð¦ðª", "country": "UAE",         "exclusivity_msg": "Caught during the Abu Dhabi GP race weekend!"},
-      {"id": "brazil_special",   "name": "Brazilian GP Special",  "active": false, "race_weekend": "Brazilian GP",  "flag": "ð§ð·", "country": "Brazil",     "exclusivity_msg": "Caught during the Brazilian GP race weekend!"}
+      {
+        "id": "china_special",
+        "name": "Chinese GP Special",
+        "active": true,
+        "race_weekend": "Chinese GP",
+        "flag": "ð¨ð³",
+        "country": "China",
+        "exclusivity_msg": "Caught during the Chinese GP race weekend!"
+      },
+      {
+        "id": "japan_special",
+        "name": "Japanese GP Special",
+        "active": false,
+        "race_weekend": "Japanese GP",
+        "flag": "ð¯ðµ",
+        "country": "Japan",
+        "exclusivity_msg": "Caught during the Japanese GP race weekend!"
+      },
+      {
+        "id": "bahrain_special",
+        "name": "Bahrain GP Special",
+        "active": false,
+        "race_weekend": "Bahrain GP",
+        "flag": "ð§ð­",
+        "country": "Bahrain",
+        "exclusivity_msg": "Caught during the Bahrain GP race weekend!"
+      },
+      {
+        "id": "saudi_special",
+        "name": "Saudi GP Special",
+        "active": false,
+        "race_weekend": "Saudi GP",
+        "flag": "ð¸ð¦",
+        "country": "Saudi Arabia",
+        "exclusivity_msg": "Caught during the Saudi GP race weekend!"
+      },
+      {
+        "id": "australia_special",
+        "name": "Australian GP Special",
+        "active": false,
+        "race_weekend": "Australian GP",
+        "flag": "ð¦ðº",
+        "country": "Australia",
+        "exclusivity_msg": "Caught during the Australian GP race weekend!"
+      },
+      {
+        "id": "miami_special",
+        "name": "Miami GP Special",
+        "active": false,
+        "race_weekend": "Miami GP",
+        "flag": "ðºð¸",
+        "country": "USA",
+        "exclusivity_msg": "Caught during the Miami GP race weekend!"
+      },
+      {
+        "id": "imola_special",
+        "name": "Emilia Romagna Special",
+        "active": false,
+        "race_weekend": "Emilia Romagna GP",
+        "flag": "ð®ð¹",
+        "country": "Italy",
+        "exclusivity_msg": "Caught during the Emilia Romagna GP race weekend!"
+      },
+      {
+        "id": "monaco_special",
+        "name": "Monaco GP Special",
+        "active": false,
+        "race_weekend": "Monaco GP",
+        "flag": "ð²ð¨",
+        "country": "Monaco",
+        "exclusivity_msg": "Caught during the Monaco GP race weekend!"
+      },
+      {
+        "id": "canada_special",
+        "name": "Canadian GP Special",
+        "active": false,
+        "race_weekend": "Canadian GP",
+        "flag": "ð¨ð¦",
+        "country": "Canada",
+        "exclusivity_msg": "Caught during the Canadian GP race weekend!"
+      },
+      {
+        "id": "spain_special",
+        "name": "Spanish GP Special",
+        "active": false,
+        "race_weekend": "Spanish GP",
+        "flag": "ðªð¸",
+        "country": "Spain",
+        "exclusivity_msg": "Caught during the Spanish GP race weekend!"
+      },
+      {
+        "id": "austria_special",
+        "name": "Austrian GP Special",
+        "active": false,
+        "race_weekend": "Austrian GP",
+        "flag": "ð¦ð¹",
+        "country": "Austria",
+        "exclusivity_msg": "Caught during the Austrian GP race weekend!"
+      },
+      {
+        "id": "britain_special",
+        "name": "British GP Special",
+        "active": false,
+        "race_weekend": "British GP",
+        "flag": "ð¬ð§",
+        "country": "Britain",
+        "exclusivity_msg": "Caught during the British GP race weekend!"
+      },
+      {
+        "id": "hungary_special",
+        "name": "Hungarian GP Special",
+        "active": false,
+        "race_weekend": "Hungarian GP",
+        "flag": "ð­ðº",
+        "country": "Hungary",
+        "exclusivity_msg": "Caught during the Hungarian GP race weekend!"
+      },
+      {
+        "id": "belgium_special",
+        "name": "Belgian GP Special",
+        "active": false,
+        "race_weekend": "Belgian GP",
+        "flag": "ð§ðª",
+        "country": "Belgium",
+        "exclusivity_msg": "Caught during the Belgian GP race weekend!"
+      },
+      {
+        "id": "dutch_special",
+        "name": "Dutch GP Special",
+        "active": false,
+        "race_weekend": "Dutch GP",
+        "flag": "ð³ð±",
+        "country": "Netherlands",
+        "exclusivity_msg": "Caught during the Dutch GP race weekend!"
+      },
+      {
+        "id": "italy_special",
+        "name": "Italian GP Special",
+        "active": false,
+        "race_weekend": "Italian GP",
+        "flag": "ð®ð¹",
+        "country": "Italy",
+        "exclusivity_msg": "Caught during the Italian GP race weekend!"
+      },
+      {
+        "id": "azerbaijan_special",
+        "name": "Azerbaijan GP Special",
+        "active": false,
+        "race_weekend": "Azerbaijan GP",
+        "flag": "ð¦ð¿",
+        "country": "Azerbaijan",
+        "exclusivity_msg": "Caught during the Azerbaijan GP race weekend!"
+      },
+      {
+        "id": "singapore_special",
+        "name": "Singapore GP Special",
+        "active": false,
+        "race_weekend": "Singapore GP",
+        "flag": "ð¸ð¬",
+        "country": "Singapore",
+        "exclusivity_msg": "Caught during the Singapore GP race weekend!"
+      },
+      {
+        "id": "usa_special",
+        "name": "COTA GP Special",
+        "active": false,
+        "race_weekend": "US GP",
+        "flag": "ðºð¸",
+        "country": "USA",
+        "exclusivity_msg": "Caught during the COTA GP race weekend!"
+      },
+      {
+        "id": "mexico_special",
+        "name": "Mexican GP Special",
+        "active": false,
+        "race_weekend": "Mexican GP",
+        "flag": "ð²ð½",
+        "country": "Mexico",
+        "exclusivity_msg": "Caught during the Mexican GP race weekend!"
+      },
+      {
+        "id": "lasvegas_special",
+        "name": "Las Vegas GP Special",
+        "active": false,
+        "race_weekend": "Las Vegas GP",
+        "flag": "ðºð¸",
+        "country": "USA",
+        "exclusivity_msg": "Caught during the Las Vegas GP race weekend!"
+      },
+      {
+        "id": "qatar_special",
+        "name": "Qatar GP Special",
+        "active": false,
+        "race_weekend": "Qatar GP",
+        "flag": "ð¶ð¦",
+        "country": "Qatar",
+        "exclusivity_msg": "Caught during the Qatar GP race weekend!"
+      },
+      {
+        "id": "abudhabi_special",
+        "name": "Abu Dhabi GP Special",
+        "active": false,
+        "race_weekend": "Abu Dhabi GP",
+        "flag": "ð¦ðª",
+        "country": "UAE",
+        "exclusivity_msg": "Caught during the Abu Dhabi GP race weekend!"
+      },
+      {
+        "id": "brazil_special",
+        "name": "Brazilian GP Special",
+        "active": false,
+        "race_weekend": "Brazilian GP",
+        "flag": "ð§ð·",
+        "country": "Brazil",
+        "exclusivity_msg": "Caught during the Brazilian GP race weekend!"
+      }
     ]
   }
 }
