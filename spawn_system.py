@@ -1,4 +1,4 @@
-import discord
+mport discord
 import asyncio
 import random
 import uuid
@@ -151,6 +151,16 @@ class SignModal(discord.ui.Modal):
                 f"> {r_emoji} **{rarity_str}**{variant_str} | :coin: {catch_val:,}"
             )
 
+            # GP exclusivity line — shown if variant looks like a GP Spec
+            gp_excl = ""
+            if "GP Spec" in variant or "GP" in variant and "Spec" in variant:
+                active_gp = cu.get_active_gp()
+                if active_gp:
+                    gp_excl = f"\n{cu.get_gp_exclusivity_line(active_gp)}"
+
+            if gp_excl:
+                msg += gp_excl
+
             if info_granted:
                 msg += f"\n> :card_index: You also received the **{info_granted}** info card!"
 
@@ -234,7 +244,11 @@ class SpawnSystem:
             return
 
         active_gp = cu.get_active_gp()
-        variant   = cu.roll_variant(active_gp=active_gp is not None)
+        variant   = cu.roll_variant(active_gp=active_gp is not None, card_type=card.get('type', ''))
+
+        # Rename "GP Specs" to the dynamic GP weekend label e.g. "Chinese GP Spec"
+        if variant == "GP Specs" and active_gp:
+            variant = cu.get_gp_variant_label(active_gp)
 
         spawn_id = str(uuid.uuid4())
         db.register_spawn(spawn_id, card["id"], variant, str(channel_id))
