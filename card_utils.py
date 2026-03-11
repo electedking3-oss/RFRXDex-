@@ -127,10 +127,12 @@ def generate_instance_id() -> str:
     return uuid.uuid4().hex[:6].upper()
 
 
-def roll_variant(active_gp: bool = False) -> str:
-    """Roll for a card variant. If active_gp=True, GP Specs is eligible."""
+def roll_variant(active_gp: bool = False, card_type: str = "") -> str:
+    """Roll for a card variant.
+    GP Specs only eligible if active_gp=True AND card is not a track.
+    """
     pool = dict(VARIANT_WEIGHTS)
-    if not active_gp:
+    if not active_gp or card_type.lower() == "track":
         pool.pop("GP Specs", None)
 
     total = sum(pool.values())
@@ -141,6 +143,18 @@ def roll_variant(active_gp: bool = False) -> str:
         if roll <= cumulative:
             return variant
     return "Standard"
+
+
+def get_gp_variant_label(active_gp: dict) -> str:
+    """Return dynamic GP variant name e.g. 'Dutch GP Spec'"""
+    return f"{active_gp.get('race_weekend', 'GP')} Spec"
+
+
+def get_gp_exclusivity_line(active_gp: dict) -> str:
+    """Return the exclusivity line shown on catch e.g. '🇳🇱 *This card is a Dutch GP exclusive!*'"""
+    flag = active_gp.get("flag", "")
+    msg  = active_gp.get("exclusivity_msg", f"Caught during the {active_gp.get('race_weekend', 'GP')} race weekend!")
+    return f"{flag} *{msg}*"
 
 
 def pick_random_spawnable_card() -> dict | None:
