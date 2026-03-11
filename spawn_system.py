@@ -109,10 +109,16 @@ class SignModal(discord.ui.Modal):
             iid       = cu.generate_instance_id()
 
             db.ensure_user(str(interaction.user.id), interaction.user.display_name)
-            db.add_card_to_inventory(
-                str(interaction.user.id), card["id"], variant, catch_val, iid,
-                atk_mod=atk_mod, hp_mod=hp_mod
-            )
+            try:
+                db.add_card_to_inventory(
+                    str(interaction.user.id), card["id"], variant, catch_val, iid,
+                    atk_mod, hp_mod
+                )
+            except TypeError:
+                # Fallback if database.py hasn't been updated yet
+                db.add_card_to_inventory(
+                    str(interaction.user.id), card["id"], variant, catch_val, iid
+                )
 
             # Grant info card if applicable
             info_granted = None
