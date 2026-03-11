@@ -48,10 +48,10 @@ SPAWN_CAPTIONS = [
 
 
 class SignModal(discord.ui.Modal):
-    def __init__(self, spawn_id: str, card: dict, spawn_msg: discord.Message):
+    def __init__(self, spawn_id: str, card_name: str, spawn_msg: discord.Message):
         super().__init__(title="Sign this card!")
         self.spawn_id  = spawn_id
-        self.card      = card
+        self.card_name = card_name   # only the name, not the full card dict
         self.spawn_msg = spawn_msg
         self.answer    = discord.ui.TextInput(
             label="What is the name of this card?",
@@ -62,82 +62,111 @@ class SignModal(discord.ui.Modal):
         self.add_item(self.answer)
 
     async def on_submit(self, interaction: discord.Interaction):
-        user_input = self.answer.value.strip().lower()
-        card_name  = self.card["name"].lower()
-        aliases    = [a.lower() for a in self.card.get("aliases", [])]
-        valid      = [card_name] + aliases
-
-        # Wrong answer — public fail caption
-        if user_input not in valid:
-            raw     = random.choice(FAIL_CAPTIONS)
-            caption = raw.replace("{user}", f"**{interaction.user.display_name}**")
-            await interaction.response.send_message(caption)
-            return
-
-        # Atomic claim
-        claimed = db.claim_spawn(self.spawn_id, str(interaction.user.id))
-        if not claimed:
-            await interaction.response.send_message(
-                ":x: This card was already signed by someone else!",
-                ephemeral=True
-            )
-            return
-
-        spawn   = db.get_spawn(self.spawn_id)
-        variant = spawn["variant"]
-        card    = self.card
-
-        # Roll ATK/HP mods
-        atk_mod, hp_mod = cu.roll_atk_hp_mods()
-
-        # Calculate value
-        old_val   = db.get_current_value(card["id"], variant, card.get("base_value", 100))
-        catch_val = cu.compute_catch_value(card, variant)
-        gained    = catch_val - old_val
-        iid       = cu.generate_instance_id()
-
-        db.ensure_user(str(interaction.user.id), interaction.user.display_name)
-        db.add_card_to_inventory(str(interaction.user.id), card["id"], variant, catch_val, iid,
-                                 atk_mod=atk_mod, hp_mod=hp_mod)
-
-        # Grant info card if applicable
-        info_granted = None
-        if card.get("info_card_id"):
-            db.grant_info_card(str(interaction.user.id), card["info_card_id"])
-            info_card = cu.get_card_by_id(card["info_card_id"])
-            if info_card:
-                info_granted = info_card["name"]
-
-        # Disable the Sign me! button on original spawn message
         try:
-            disabled_view = SpawnView(self.spawn_id, card, disabled=True)
-            await self.spawn_msg.edit(view=disabled_view)
-        except Exception:
-            pass
+            user_input = self.answer.value.strip().lower()
 
-        # Catch confirmation — plain message, F1dex style:
-        # @user You signed **Card Name**! (#IIIIII, ATK:+x%/HP:+x%) (+value 🪙)
-        atk_str    = f"{atk_mod:+d}%"
-        hp_str     = f"{hp_mod:+d}%"
-        gained_str = f"+{gained:,}" if gained >= 0 else f"{gained:,}"
+            # ── Look up spawn record first ────────────────────────────────────
+            spawn = db.get_spawn(self.spawn_id)
+            if not spawn or not spawn["is_active"]:
+                await interaction.response.send_message(
+                    ":x: This card has already been signed!", ephemeral=True
+                )
+                return
 
-        msg = (
-            f"{interaction.user.mention} You signed **{card['name']}**! "
-            f"(#{iid}, ATK:{atk_str}/HP:{hp_str}) "
-            f"({gained_str} :coin:)"
-        )
+            # ── Look up card ──────────────────────────────────────────────────
+            card = cu.get_card_by_id(spawn["card_id"])
+            if not card:
+                await interaction.response.send_message(
+                    ":x: Something went wrong with this spawn.", ephemeral=True
+                )
+                return
 
-        if info_granted:
-            msg += f"\n> :card_index: You also received the **{info_granted}** info card!"
+            card_name_lower = card["name"].lower()
+            aliases         = [a.lower() for a in card.get("aliases", [])]
+            valid           = [card_name_lower] + aliases
 
-        await interaction.response.send_message(msg)
+            # ── Wrong answer ──────────────────────────────────────────────────
+            if user_input not in valid:
+                raw     = random.choice(FAIL_CAPTIONS)
+                caption = raw.replace("{user}", f"**{interaction.user.display_name}**")
+                await interaction.response.send_message(caption)
+                return
+
+            # ── Atomic claim ──────────────────────────────────────────────────
+            claimed = db.claim_spawn(self.spawn_id, str(interaction.user.id))
+            if not claimed:
+                await interaction.response.send_message(
+                    ":x: This card was already signed by someone else!", ephemeral=True
+                )
+                return
+
+            # ── All good — process the catch ──────────────────────────────────
+            variant   = spawn["variant"]
+            atk_mod, hp_mod = cu.roll_atk_hp_mods()
+            old_val   = db.get_current_value(card["id"], variant, card.get("base_value", 100))
+            catch_val = cu.compute_catch_value(card, variant)
+            gained    = catch_val - old_val
+            iid       = cu.generate_instance_id()
+
+            db.ensure_user(str(interaction.user.id), interaction.user.display_name)
+            db.add_card_to_inventory(
+                str(interaction.user.id), card["id"], variant, catch_val, iid,
+                atk_mod=atk_mod, hp_mod=hp_mod
+            )
+
+            # Grant info card if applicable
+            info_granted = None
+            if card.get("info_card_id"):
+                db.grant_info_card(str(interaction.user.id), card["info_card_id"])
+                info_card = cu.get_card_by_id(card["info_card_id"])
+                if info_card:
+                    info_granted = info_card["name"]
+
+            # ── Disable button on original spawn message ──────────────────────
+            try:
+                disabled_view = SpawnView(self.spawn_id, card["name"], disabled=True)
+                await self.spawn_msg.edit(view=disabled_view)
+            except Exception:
+                pass
+
+            # ── Catch confirmation — plain text only ──────────────────────────
+            r_emoji    = cu.get_rarity_emoji(card["rarity"])
+            v_emoji    = cu.get_variant_emoji(variant)
+            atk_str    = f"{atk_mod:+d}%"
+            hp_str     = f"{hp_mod:+d}%"
+            gained_str = f"+{gained:,}" if gained >= 0 else f"{gained:,}"
+            rarity_str = card["rarity"].capitalize()
+            variant_str = f" — {v_emoji} **{variant}**" if variant != "Standard" else ""
+
+            msg = (
+                f"{interaction.user.mention} You signed **{card['name']}**! "
+                f"(#{iid}, ATK:{atk_str}/HP:{hp_str}) "
+                f"({gained_str} :coin:)\n"
+                f"> {r_emoji} **{rarity_str}**{variant_str} | :coin: {catch_val:,}"
+            )
+
+            if info_granted:
+                msg += f"\n> :card_index: You also received the **{info_granted}** info card!"
+
+            await interaction.response.send_message(msg)
+
+        except Exception as e:
+            # Catch-all so Discord never shows "Something went wrong"
+            try:
+                await interaction.response.send_message(
+                    ":x: An error occurred. Please try again.", ephemeral=True
+                )
+            except Exception:
+                pass
+            print(f"[SPAWN ERROR] on_submit: {e}")
+            raise
 
 
 class SpawnView(discord.ui.View):
-    def __init__(self, spawn_id: str, card: dict, disabled: bool = False):
+    def __init__(self, spawn_id: str, card_name: str, disabled: bool = False):
         super().__init__(timeout=None)
-        self.spawn_id = spawn_id
-        self.card     = card
+        self.spawn_id  = spawn_id
+        self.card_name = card_name
 
         btn = discord.ui.Button(
             label="Sign me!",
@@ -155,7 +184,7 @@ class SpawnView(discord.ui.View):
                 ":x: This card has already been signed!", ephemeral=True
             )
             return
-        modal = SignModal(self.spawn_id, self.card, interaction.message)
+        modal = SignModal(self.spawn_id, self.card_name, interaction.message)
         await interaction.response.send_modal(modal)
 
 
@@ -166,7 +195,6 @@ class SpawnSystem:
         self._task             = None
 
     def set_channels(self, channel_ids: list):
-        """Alias to set spawn_channel_ids directly."""
         self.spawn_channel_ids = channel_ids
 
     def start(self):
@@ -205,25 +233,12 @@ class SpawnSystem:
         spawn_id = str(uuid.uuid4())
         db.register_spawn(spawn_id, card["id"], variant, str(channel_id))
 
-        # Spawn embed — large image, black/near-black, minimal text, matches F1dex
-        embed = discord.Embed(color=0x000001)
-        embed.set_image(url=card["image_url"])
-
-        # Only show variant label if not Standard
-        if variant != "Standard":
-            v_emoji  = cu.get_variant_emoji(variant)
-            gp_extra = ""
-            if variant == "GP Specs" and active_gp:
-                gp_extra = f" {active_gp.get('flag', '')} *{active_gp.get('name', 'GP Special')}*"
-            embed.description = f"{v_emoji} **{variant}**{gp_extra}"
-
-        embed.set_footer(text="Type the card name to sign it! | RFRXDex")
-
+        # ── Spawn message — NO embeds, just image + caption + button ─────────
         spawn_caption = random.choice(SPAWN_CAPTIONS)
-        view = SpawnView(spawn_id, card)
-        msg  = await channel.send(
-            content=f"*{spawn_caption}*",
-            embed=embed,
+        view = SpawnView(spawn_id, card["name"])
+
+        msg = await channel.send(
+            content=f"*{spawn_caption}*\n{card['image_url']}",
             view=view
         )
         db.update_spawn_message(spawn_id, str(msg.id))
