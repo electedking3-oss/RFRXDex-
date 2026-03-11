@@ -357,7 +357,7 @@
         "race_weekend": "Chinese GP",
         "flag": "ð¨ð³",
         "country": "China",
-        "exclusivity_msg": "Caught during the Chinese GP race weekend!"
+        "exclusivity_msg": "This card is a Chinese GP exclusive!"
       },
       {
         "id": "japan_special",
@@ -366,7 +366,7 @@
         "race_weekend": "Japanese GP",
         "flag": "ð¯ðµ",
         "country": "Japan",
-        "exclusivity_msg": "Caught during the Japanese GP race weekend!"
+        "exclusivity_msg": "This card is a Japanese GP exclusive!"
       },
       {
         "id": "bahrain_special",
@@ -375,7 +375,7 @@
         "race_weekend": "Bahrain GP",
         "flag": "ð§ð­",
         "country": "Bahrain",
-        "exclusivity_msg": "Caught during the Bahrain GP race weekend!"
+        "exclusivity_msg": "This card is a Bahrain GP exclusive!"
       },
       {
         "id": "saudi_special",
@@ -384,7 +384,7 @@
         "race_weekend": "Saudi GP",
         "flag": "ð¸ð¦",
         "country": "Saudi Arabia",
-        "exclusivity_msg": "Caught during the Saudi GP race weekend!"
+        "exclusivity_msg": "This card is a Saudi GP exclusive!"
       },
       {
         "id": "australia_special",
@@ -393,7 +393,7 @@
         "race_weekend": "Australian GP",
         "flag": "ð¦ðº",
         "country": "Australia",
-        "exclusivity_msg": "Caught during the Australian GP race weekend!"
+        "exclusivity_msg": "This card is a Australian GP exclusive!"
       },
       {
         "id": "miami_special",
@@ -402,7 +402,7 @@
         "race_weekend": "Miami GP",
         "flag": "ðºð¸",
         "country": "USA",
-        "exclusivity_msg": "Caught during the Miami GP race weekend!"
+        "exclusivity_msg": "This card is a Miami GP exclusive!"
       },
       {
         "id": "imola_special",
@@ -411,7 +411,7 @@
         "race_weekend": "Emilia Romagna GP",
         "flag": "ð®ð¹",
         "country": "Italy",
-        "exclusivity_msg": "Caught during the Emilia Romagna GP race weekend!"
+        "exclusivity_msg": "This card is a Emilia Romagna GP exclusive!"
       },
       {
         "id": "monaco_special",
@@ -420,7 +420,7 @@
         "race_weekend": "Monaco GP",
         "flag": "ð²ð¨",
         "country": "Monaco",
-        "exclusivity_msg": "Caught during the Monaco GP race weekend!"
+        "exclusivity_msg": "This card is a Monaco GP exclusive!"
       },
       {
         "id": "canada_special",
@@ -429,7 +429,7 @@
         "race_weekend": "Canadian GP",
         "flag": "ð¨ð¦",
         "country": "Canada",
-        "exclusivity_msg": "Caught during the Canadian GP race weekend!"
+        "exclusivity_msg": "This card is a Canadian GP exclusive!"
       },
       {
         "id": "spain_special",
@@ -438,7 +438,7 @@
         "race_weekend": "Spanish GP",
         "flag": "ðªð¸",
         "country": "Spain",
-        "exclusivity_msg": "Caught during the Spanish GP race weekend!"
+        "exclusivity_msg": "This card is a Spanish GP exclusive!"
       },
       {
         "id": "austria_special",
@@ -447,7 +447,7 @@
         "race_weekend": "Austrian GP",
         "flag": "ð¦ð¹",
         "country": "Austria",
-        "exclusivity_msg": "Caught during the Austrian GP race weekend!"
+        "exclusivity_msg": "This card is a Austrian GP exclusive!"
       },
       {
         "id": "britain_special",
@@ -456,7 +456,7 @@
         "race_weekend": "British GP",
         "flag": "ð¬ð§",
         "country": "Britain",
-        "exclusivity_msg": "Caught during the British GP race weekend!"
+        "exclusivity_msg": "This card is a British GP exclusive!"
       },
       {
         "id": "hungary_special",
@@ -465,7 +465,7 @@
         "race_weekend": "Hungarian GP",
         "flag": "ð­ðº",
         "country": "Hungary",
-        "exclusivity_msg": "Caught during the Hungarian GP race weekend!"
+        "exclusivity_msg": "This card is a Hungarian GP exclusive!"
       },
       {
         "id": "belgium_special",
@@ -474,7 +474,7 @@
         "race_weekend": "Belgian GP",
         "flag": "ð§ðª",
         "country": "Belgium",
-        "exclusivity_msg": "Caught during the Belgian GP race weekend!"
+        "exclusivity_msg": "This card is a Belgian GP exclusive!"
       },
       {
         "id": "dutch_special",
@@ -483,7 +483,7 @@
         "race_weekend": "Dutch GP",
         "flag": "ð³ð±",
         "country": "Netherlands",
-        "exclusivity_msg": "Caught during the Dutch GP race weekend!"
+        "exclusivity_msg": "This card is a Dutch GP exclusive!"
       },
       {
         "id": "italy_special",
@@ -492,7 +492,7 @@
         "race_weekend": "Italian GP",
         "flag": "ð®ð¹",
         "country": "Italy",
-        "exclusivity_msg": "Caught during the Italian GP race weekend!"
+        "exclusivity_msg": "This card is a Italian GP exclusive!"
       },
       {
         "id": "azerbaijan_special",
@@ -501,7 +501,7 @@
         "race_weekend": "Azerbaijan GP",
         "flag": "ð¦ð¿",
         "country": "Azerbaijan",
-        "exclusivity_msg": "Caught during the Azerbaijan GP race weekend!"
+        "exclusivity_msg": "This card is a Azerbaijan GP exclusive!"
       },
       {
         "id": "singapore_special",
@@ -510,7 +510,7 @@
         "race_weekend": "Singapore GP",
         "flag": "ð¸ð¬",
         "country": "Singapore",
-        "exclusivity_msg": "Caught during the Singapore GP race weekend!"
+        "exclusivity_msg": "This card is a Singapore GP exclusive!"
       },
       {
         "id": "usa_special",
@@ -519,7 +519,7 @@
         "race_weekend": "US GP",
         "flag": "ðºð¸",
         "country": "USA",
-        "exclusivity_msg": "Caught during the COTA GP race weekend!"
+        "exclusivity_msg": "This card is a US GP exclusive!"
       },
       {
         "id": "mexico_special",
@@ -528,7 +528,7 @@
         "race_weekend": "Mexican GP",
         "flag": "ð²ð½",
         "country": "Mexico",
-        "exclusivity_msg": "Caught during the Mexican GP race weekend!"
+        "exclusivity_msg": "This card is a Mexican GP exclusive!"
       },
       {
         "id": "lasvegas_special",
@@ -537,7 +537,7 @@
         "race_weekend": "Las Vegas GP",
         "flag": "ðºð¸",
         "country": "USA",
-        "exclusivity_msg": "Caught during the Las Vegas GP race weekend!"
+        "exclusivity_msg": "This card is a Las Vegas GP exclusive!"
       },
       {
         "id": "qatar_special",
@@ -546,7 +546,7 @@
         "race_weekend": "Qatar GP",
         "flag": "ð¶ð¦",
         "country": "Qatar",
-        "exclusivity_msg": "Caught during the Qatar GP race weekend!"
+        "exclusivity_msg": "This card is a Qatar GP exclusive!"
       },
       {
         "id": "abudhabi_special",
@@ -555,7 +555,7 @@
         "race_weekend": "Abu Dhabi GP",
         "flag": "ð¦ðª",
         "country": "UAE",
-        "exclusivity_msg": "Caught during the Abu Dhabi GP race weekend!"
+        "exclusivity_msg": "This card is a Abu Dhabi GP exclusive!"
       },
       {
         "id": "brazil_special",
@@ -564,7 +564,7 @@
         "race_weekend": "Brazilian GP",
         "flag": "ð§ð·",
         "country": "Brazil",
-        "exclusivity_msg": "Caught during the Brazilian GP race weekend!"
+        "exclusivity_msg": "This card is a Brazilian GP exclusive!"
       }
     ]
   }
