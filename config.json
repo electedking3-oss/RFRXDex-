@@ -1,0 +1,21 @@
+{
+  "bot": {
+    "prefix": "!",
+    "status": "cards spawn | /help",
+    "owner_ids": [
+      123456789012345678
+    ]
+  },
+  "spawn": {
+    "interval_min": 300,
+    "interval_max": 900
+  },
+  "economy": {
+    "starting_coins": 500
+  },
+  "admin_roles": [
+    "DEX Admin",
+    "Staff",
+    "Owner"
+  ]
+}
